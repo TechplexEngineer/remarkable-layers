@@ -126,7 +126,14 @@ class SVGStrokeFont:
         transform = multi_dot(transforms)
         horiz_adv_x = 0.0
         for char in word:
-            glyph = self.root.find(f".//glyph[@unicode='{char}']", self.root.nsmap)
+            if char=='"':
+                quoted_char="'\"'"
+            elif char=="'":
+                quoted_char='"\'"'
+            else:
+                quoted_char=f'"{char}"'
+
+            glyph = self.root.find(f""".//glyph[@unicode={quoted_char}]""", self.root.nsmap)
             hadv = np.array([[1.0, 0, horiz_adv_x], [0, 1.0, 0.0], [0, 0, 1.0]])
             if "d" in glyph.attrib:
                 char_transform = np.dot(
