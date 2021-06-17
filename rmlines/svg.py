@@ -115,6 +115,7 @@ class SVGStrokeFont:
         colour=Colour.BLACK,
         width=Width.SMALL,
         segment_width=1.,
+        return_h_adv=False,
     ):
         strokes = []
         scale = height / self.units_per_em
@@ -149,4 +150,7 @@ class SVGStrokeFont:
                 )
                 strokes.extend(char_strokes)
             horiz_adv_x += float(glyph.attrib["horiz-adv-x"])
-        return strokes
+        if return_h_adv:
+            return strokes, horiz_adv_x*scale
+        else:
+            return strokes
