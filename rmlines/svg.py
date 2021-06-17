@@ -96,9 +96,7 @@ def svg_to_rmlines(buffer):
 class SVGStrokeFont:
     # encapsulate hershey text fonts
     # https://gitlab.com/oskay/svg-fonts
-    def __init__(
-        self, path=str((LOCAL_FONTS_DIR / "HersheySans1.svg"))
-    ):
+    def __init__(self, path=str((LOCAL_FONTS_DIR / "HersheySans1.svg"))):
         tree = ET.parse(path)
         self.root = tree.getroot()
         font = self.root.find(".//font", self.root.nsmap)
@@ -114,7 +112,7 @@ class SVGStrokeFont:
         pen=Pen.DEFAULT,
         colour=Colour.BLACK,
         width=Width.SMALL,
-        segment_width=1.,
+        segment_width=1.0,
         return_h_adv=False,
     ):
         strokes = []
@@ -127,14 +125,16 @@ class SVGStrokeFont:
         transform = multi_dot(transforms)
         horiz_adv_x = 0.0
         for char in word:
-            if char=='"':
-                quoted_char="'\"'"
-            elif char=="'":
-                quoted_char='"\'"'
+            if char == '"':
+                quoted_char = "'\"'"
+            elif char == "'":
+                quoted_char = '"\'"'
             else:
-                quoted_char=f'"{char}"'
+                quoted_char = f'"{char}"'
 
-            glyph = self.root.find(f""".//glyph[@unicode={quoted_char}]""", self.root.nsmap)
+            glyph = self.root.find(
+                f""".//glyph[@unicode={quoted_char}]""", self.root.nsmap
+            )
             hadv = np.array([[1.0, 0, horiz_adv_x], [0, 1.0, 0.0], [0, 0, 1.0]])
             if "d" in glyph.attrib:
                 char_transform = np.dot(
@@ -151,6 +151,6 @@ class SVGStrokeFont:
                 strokes.extend(char_strokes)
             horiz_adv_x += float(glyph.attrib["horiz-adv-x"])
         if return_h_adv:
-            return strokes, horiz_adv_x*scale
+            return strokes, horiz_adv_x * scale
         else:
             return strokes

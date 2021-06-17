@@ -25,7 +25,10 @@ XML_PARSER = ET.XMLParser(huge_tree=True)
 
 
 def pdf_info(filename):
-    run = subprocess.run(["pdfinfo"] + [filename], capture_output=True,)
+    run = subprocess.run(
+        ["pdfinfo"] + [filename],
+        capture_output=True,
+    )
     return {
         line[0 : line.find(":")].strip(): line[line.find(":") + 1 :].strip()
         for line in run.stdout.decode("utf8").splitlines()

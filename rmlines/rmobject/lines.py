@@ -42,4 +42,5 @@ class RMLines(ByteableList):
     @classmethod
     def from_svg(cls, buffer):
         from ..svg import svg_to_rmlines
+
         return svg_to_rmlines(buffer)

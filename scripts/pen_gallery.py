@@ -30,7 +30,7 @@ def main():
     for pen, width in product(Pen, Width):
         if pen.value >= 12:
             strokes = svf.word_to_strokes(
-                f"{pen}, {width}", pos, 40, pen=pen, width=width, segment_width=2.
+                f"{pen}, {width}", pos, 40, pen=pen, width=width, segment_width=2.0
             )
             layer.extend(strokes)
             pos = Pos(pos[0], pos[1] + 40)
