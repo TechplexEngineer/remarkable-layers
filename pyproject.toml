@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rmlines"
-version = "0.1.1"
+version = "0.1.2"
 description = ""
 authors = ["Blair Azzopardi <blairuk@gmail.com>", "Barry Van Tassell <bajavata@gmail.com>"]
 
