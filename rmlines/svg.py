@@ -125,10 +125,12 @@ class SVGStrokeFont:
         transform = multi_dot(transforms)
         horiz_adv_x = 0.0
         for char in word:
-            if char == '"':
+            if char in ['"', "“", "”"]:
                 quoted_char = "'\"'"
-            elif char == "'":
+            elif char == "'" or char == "’":
                 quoted_char = '"\'"'
+            elif char == "…":
+                quote_char = '"..."'
             else:
                 quoted_char = f'"{char}"'
 
