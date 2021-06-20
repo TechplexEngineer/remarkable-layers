@@ -2,7 +2,7 @@
 name = "rmlines"
 version = "0.1.1"
 description = ""
-authors = ["Blair Azzopardi <blairuk@gmail.com>"]
+authors = ["Blair Azzopardi <blairuk@gmail.com>", "Barry Van Tassell <bajavata@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"

@@ -1,4 +1,9 @@
-Note: I am no longer using this project and I have archived it. Feel free to fork.
+## Administrative Note
+
+This is a fork of the [original, now archived remarkable-layers](https://github.com/bsdz/remarkable-layers).
+It includes some bugfixes and is updated to work with the current ReMarkable Cloud API.
+
+Pull requests welcome.
 
 # remarkable-layers
 
