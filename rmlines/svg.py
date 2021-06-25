@@ -125,12 +125,14 @@ class SVGStrokeFont:
         transform = multi_dot(transforms)
         horiz_adv_x = 0.0
         for char in word:
+            repeat_times = 1 # for dealing with ellipsis->... conversion
             if char in ['"', "“", "”"]:
                 quoted_char = "'\"'"
             elif char == "'" or char == "’":
                 quoted_char = '"\'"'
             elif char == "…":
-                quote_char = '"..."'
+                repeat_times = 3
+                quoted_char = '"."'
             else:
                 quoted_char = f'"{char}"'
 
@@ -150,8 +152,10 @@ class SVGStrokeFont:
                     width=width,
                     segment_width=segment_width,
                 )
-                strokes.extend(char_strokes)
-            horiz_adv_x += float(glyph.attrib["horiz-adv-x"])
+                for _ in range(repeat_times):
+                    strokes.extend(char_strokes)
+            for _ in range(repeat_times):
+                horiz_adv_x += float(glyph.attrib["horiz-adv-x"])
         if return_h_adv:
             return strokes, horiz_adv_x * scale
         else:
