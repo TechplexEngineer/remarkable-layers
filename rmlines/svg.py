@@ -139,22 +139,21 @@ class SVGStrokeFont:
             glyph = self.root.find(
                 f""".//glyph[@unicode={quoted_char}]""", self.root.nsmap
             )
-            hadv = np.array([[1.0, 0, horiz_adv_x], [0, 1.0, 0.0], [0, 0, 1.0]])
-            if "d" in glyph.attrib:
-                char_transform = np.dot(
-                    transform, hadv
-                )  # advance (TODO: do this before char?)
-                char_strokes = svg_path_to_strokes(
-                    glyph.attrib["d"],
-                    transform=char_transform,
-                    pen=pen,
-                    colour=colour,
-                    width=width,
-                    segment_width=segment_width,
-                )
-                for _ in range(repeat_times):
+            for i in range(repeat_times):
+                hadv = np.array([[1.0, 0, horiz_adv_x], [0, 1.0, 0.0], [0, 0, 1.0]])
+                if "d" in glyph.attrib:
+                    char_transform = np.dot(
+                        transform, hadv
+                    )  # advance (TODO: do this before char?)
+                    char_strokes = svg_path_to_strokes(
+                        glyph.attrib["d"],
+                        transform=char_transform,
+                        pen=pen,
+                        colour=colour,
+                        width=width,
+                        segment_width=segment_width,
+                    )
                     strokes.extend(char_strokes)
-            for _ in range(repeat_times):
                 horiz_adv_x += float(glyph.attrib["horiz-adv-x"])
         if return_h_adv:
             return strokes, horiz_adv_x * scale
