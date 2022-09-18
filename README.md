@@ -78,18 +78,6 @@ rm0 = RMLines.from_svg(f.open("rb")
 
 ## Example Scripts
 
-### rmlines_pdf_converter
-
-This script converts a pdf to several intermediate SVG files, one per page, then generates RM Lines notebook that is uploaded to Remarkable Cloud. The SVG output files are simplified SVG that the RM Lines module can process. That is all beziers have been linearized and raster images traced into paths. This can be time consuming.
-
-Typical usage:
-
-```bash
-rmlines_pdf_converter my_file.pdf --first 10 --last 25
-```
-
-Use "--help" flag for more options.
-
 #### Additional Dependencies
 
 Applications: inkscape and pdfinfo. 
