@@ -89,7 +89,7 @@ This script uses hershey stroke fonts to place text in Remarkable lines files wi
 
 ## Obtaining a cloud token for upload
 
-Currently, one should initialize their connection to Remarkable Cloud using rmapy directly. You can obtain a one time token from [Remarkable's Mobile Connect](https://my.remarkable.com/connect/mobile) page.
+Currently, one should initialize their connection to Remarkable Cloud using rmapy directly. You can obtain a one time token from [Remarkable's Mobile Connect](https://my.remarkable.com/device/desktop) page.
 
 Then follow example as [described here](https://rmapy.readthedocs.io/en/latest/quickstart.html#registering-the-api-client). Eg,
 
